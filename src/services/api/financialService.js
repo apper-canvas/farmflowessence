@@ -285,4 +285,3 @@ const financialService = {
 };
 
 export default financialService;
-export default financialService;
