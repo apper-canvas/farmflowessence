@@ -1,8 +1,22 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "@/layouts/Root";
 import ApperIcon from "@/components/ApperIcon";
 import { cn } from "@/utils/cn";
 
+const LogoutButton = () => {
+  const { logout } = useAuth();
+  
+  return (
+    <button
+      onClick={logout}
+      className="p-2 text-gray-500 hover:text-error rounded-lg hover:bg-error/5 transition-colors duration-200"
+      title="Logout"
+    >
+      <ApperIcon name="LogOut" size={20} />
+    </button>
+  );
+};
 const Header = () => {
   const location = useLocation();
   const [showNotifications, setShowNotifications] = useState(false);
@@ -64,13 +78,12 @@ const Header = () => {
             })}
           </nav>
 
-          {/* Mobile Page Title */}
+{/* Mobile Page Title */}
           <div className="lg:hidden">
             <h2 className="text-lg font-semibold text-gray-900">{getPageTitle()}</h2>
           </div>
-
           {/* User Actions */}
-<div className="hidden lg:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center space-x-3">
             <button 
               onClick={() => setShowNotifications(true)}
               className="p-2 text-gray-500 hover:text-primary rounded-lg hover:bg-primary/5 transition-colors duration-200 relative"
@@ -88,6 +101,7 @@ const Header = () => {
             >
               <ApperIcon name="Settings" size={20} />
             </button>
+            <LogoutButton />
           </div>
         </div>
       </div>
